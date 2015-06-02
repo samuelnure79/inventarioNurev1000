@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetalleDeOrdenCompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetalleDeOrdenCompraLabel_idDetalleDeOrdenCompra}"/>
+                    <h:outputText value="#{detalleDeOrdenCompraController.selected.idDetalleDeOrdenCompra}" title="#{bundle.ViewDetalleDeOrdenCompraTitle_idDetalleDeOrdenCompra}"/>
+                    <h:outputText value="#{bundle.ViewDetalleDeOrdenCompraLabel_cantidad}"/>
+                    <h:outputText value="#{detalleDeOrdenCompraController.selected.cantidad}" title="#{bundle.ViewDetalleDeOrdenCompraTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewDetalleDeOrdenCompraLabel_idOrden}"/>
+                    <h:outputText value="#{detalleDeOrdenCompraController.selected.idOrden}" title="#{bundle.ViewDetalleDeOrdenCompraTitle_idOrden}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleDeOrdenCompraController.destroyAndView}" value="#{bundle.ViewDetalleDeOrdenCompraDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDetalleDeOrdenCompraEditLink}"/>
+                <br />
+                <h:commandLink action="#{detalleDeOrdenCompraController.prepareCreate}" value="#{bundle.ViewDetalleDeOrdenCompraCreateLink}" />
+                <br />
+                <h:commandLink action="#{detalleDeOrdenCompraController.prepareList}" value="#{bundle.ViewDetalleDeOrdenCompraShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDetalleDeOrdenCompraIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

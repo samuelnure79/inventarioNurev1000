@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoTransaccionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipoTransaccionLabel_idTipoTransaccion}" for="idTipoTransaccion" />
+                    <h:inputText id="idTipoTransaccion" value="#{tipoTransaccionController.selected.idTipoTransaccion}" title="#{bundle.EditTipoTransaccionTitle_idTipoTransaccion}" required="true" requiredMessage="#{bundle.EditTipoTransaccionRequiredMessage_idTipoTransaccion}"/>
+                    <h:outputLabel value="#{bundle.EditTipoTransaccionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{tipoTransaccionController.selected.nombre}" title="#{bundle.EditTipoTransaccionTitle_nombre}" required="true" requiredMessage="#{bundle.EditTipoTransaccionRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditTipoTransaccionLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{tipoTransaccionController.selected.descripcion}" title="#{bundle.EditTipoTransaccionTitle_descripcion}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tipoTransaccionController.update}" value="#{bundle.EditTipoTransaccionSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditTipoTransaccionViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{tipoTransaccionController.prepareList}" value="#{bundle.EditTipoTransaccionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditTipoTransaccionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

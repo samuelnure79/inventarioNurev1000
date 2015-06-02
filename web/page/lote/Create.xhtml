@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLoteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLoteLabel_idLote}" for="idLote" />
+                    <h:inputText id="idLote" value="#{loteController.selected.idLote}" title="#{bundle.CreateLoteTitle_idLote}" required="true" requiredMessage="#{bundle.CreateLoteRequiredMessage_idLote}"/>
+                    <h:outputLabel value="#{bundle.CreateLoteLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{loteController.selected.cantidad}" title="#{bundle.CreateLoteTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateLoteRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.CreateLoteLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{loteController.selected.descripcion}" title="#{bundle.CreateLoteTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateLoteLabel_idProducto}" for="idProducto" />
+                    <h:selectOneMenu id="idProducto" value="#{loteController.selected.idProducto}" title="#{bundle.CreateLoteTitle_idProducto}" required="true" requiredMessage="#{bundle.CreateLoteRequiredMessage_idProducto}">
+                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateLoteLabel_idBodega}" for="idBodega" />
+                    <h:selectOneMenu id="idBodega" value="#{loteController.selected.idBodega}" title="#{bundle.CreateLoteTitle_idBodega}" required="true" requiredMessage="#{bundle.CreateLoteRequiredMessage_idBodega}">
+                        <f:selectItems value="#{bodegaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{loteController.create}" value="#{bundle.CreateLoteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{loteController.prepareList}" value="#{bundle.CreateLoteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateLoteIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

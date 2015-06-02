@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRequisicionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRequisicionEmpty}" rendered="#{requisicionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{requisicionController.items.rowCount > 0}">
+                    <h:outputText value="#{requisicionController.pagination.pageFirstItem + 1}..#{requisicionController.pagination.pageLastItem + 1}/#{requisicionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{requisicionController.previous}" value="#{bundle.Previous} #{requisicionController.pagination.pageSize}" rendered="#{requisicionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{requisicionController.next}" value="#{bundle.Next} #{requisicionController.pagination.pageSize}" rendered="#{requisicionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{requisicionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequisicionTitle_idRequisicion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRequisicion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequisicionTitle_fechaReq}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaReq}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequisicionTitle_idEmpleado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpleado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequisicionTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{requisicionController.prepareView}" value="#{bundle.ListRequisicionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{requisicionController.prepareEdit}" value="#{bundle.ListRequisicionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{requisicionController.destroy}" value="#{bundle.ListRequisicionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{requisicionController.prepareCreate}" value="#{bundle.ListRequisicionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListRequisicionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

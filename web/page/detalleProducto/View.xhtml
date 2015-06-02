@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetalleProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_idDetalleProducto}"/>
+                    <h:outputText value="#{detalleProductoController.selected.idDetalleProducto}" title="#{bundle.ViewDetalleProductoTitle_idDetalleProducto}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_nombre}"/>
+                    <h:outputText value="#{detalleProductoController.selected.nombre}" title="#{bundle.ViewDetalleProductoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_cantidad}"/>
+                    <h:outputText value="#{detalleProductoController.selected.cantidad}" title="#{bundle.ViewDetalleProductoTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_idProducto}"/>
+                    <h:outputText value="#{detalleProductoController.selected.idProducto}" title="#{bundle.ViewDetalleProductoTitle_idProducto}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_idDetalleRequisicion}"/>
+                    <h:outputText value="#{detalleProductoController.selected.idDetalleRequisicion}" title="#{bundle.ViewDetalleProductoTitle_idDetalleRequisicion}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_idDetalleDevolucion}"/>
+                    <h:outputText value="#{detalleProductoController.selected.idDetalleDevolucion}" title="#{bundle.ViewDetalleProductoTitle_idDetalleDevolucion}"/>
+                    <h:outputText value="#{bundle.ViewDetalleProductoLabel_idDetalleDeOrdenCompra}"/>
+                    <h:outputText value="#{detalleProductoController.selected.idDetalleDeOrdenCompra}" title="#{bundle.ViewDetalleProductoTitle_idDetalleDeOrdenCompra}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleProductoController.destroyAndView}" value="#{bundle.ViewDetalleProductoDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDetalleProductoEditLink}"/>
+                <br />
+                <h:commandLink action="#{detalleProductoController.prepareCreate}" value="#{bundle.ViewDetalleProductoCreateLink}" />
+                <br />
+                <h:commandLink action="#{detalleProductoController.prepareList}" value="#{bundle.ViewDetalleProductoShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDetalleProductoIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoDevolucionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoDevolucionEmpty}" rendered="#{tipoDevolucionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoDevolucionController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoDevolucionController.pagination.pageFirstItem + 1}..#{tipoDevolucionController.pagination.pageLastItem + 1}/#{tipoDevolucionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoDevolucionController.previous}" value="#{bundle.Previous} #{tipoDevolucionController.pagination.pageSize}" rendered="#{tipoDevolucionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoDevolucionController.next}" value="#{bundle.Next} #{tipoDevolucionController.pagination.pageSize}" rendered="#{tipoDevolucionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoDevolucionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDevolucionTitle_idTipoDevolucion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoDevolucion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDevolucionTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDevolucionTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoDevolucionController.prepareView}" value="#{bundle.ListTipoDevolucionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoDevolucionController.prepareEdit}" value="#{bundle.ListTipoDevolucionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoDevolucionController.destroy}" value="#{bundle.ListTipoDevolucionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoDevolucionController.prepareCreate}" value="#{bundle.ListTipoDevolucionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListTipoDevolucionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

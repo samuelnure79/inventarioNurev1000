@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetalleRequisicionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetalleRequisicionEmpty}" rendered="#{detalleRequisicionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detalleRequisicionController.items.rowCount > 0}">
+                    <h:outputText value="#{detalleRequisicionController.pagination.pageFirstItem + 1}..#{detalleRequisicionController.pagination.pageLastItem + 1}/#{detalleRequisicionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detalleRequisicionController.previous}" value="#{bundle.Previous} #{detalleRequisicionController.pagination.pageSize}" rendered="#{detalleRequisicionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detalleRequisicionController.next}" value="#{bundle.Next} #{detalleRequisicionController.pagination.pageSize}" rendered="#{detalleRequisicionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detalleRequisicionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleRequisicionTitle_idDeastalleRequisicion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDeastalleRequisicion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleRequisicionTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleRequisicionTitle_idRequisicion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRequisicion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detalleRequisicionController.prepareView}" value="#{bundle.ListDetalleRequisicionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detalleRequisicionController.prepareEdit}" value="#{bundle.ListDetalleRequisicionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detalleRequisicionController.destroy}" value="#{bundle.ListDetalleRequisicionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detalleRequisicionController.prepareCreate}" value="#{bundle.ListDetalleRequisicionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListDetalleRequisicionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDevolucionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDevolucionEmpty}" rendered="#{devolucionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{devolucionController.items.rowCount > 0}">
+                    <h:outputText value="#{devolucionController.pagination.pageFirstItem + 1}..#{devolucionController.pagination.pageLastItem + 1}/#{devolucionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{devolucionController.previous}" value="#{bundle.Previous} #{devolucionController.pagination.pageSize}" rendered="#{devolucionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{devolucionController.next}" value="#{bundle.Next} #{devolucionController.pagination.pageSize}" rendered="#{devolucionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{devolucionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idDevolucion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDevolucion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idTipoDevolucion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoDevolucion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idRequisicion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRequisicion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idOrden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrden}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDevolucionTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{devolucionController.prepareView}" value="#{bundle.ListDevolucionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{devolucionController.prepareEdit}" value="#{bundle.ListDevolucionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{devolucionController.destroy}" value="#{bundle.ListDevolucionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{devolucionController.prepareCreate}" value="#{bundle.ListDevolucionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListDevolucionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

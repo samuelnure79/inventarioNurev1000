@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTransaccionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idTransaccion}" for="idTransaccion" />
+                    <h:inputText id="idTransaccion" value="#{transaccionController.selected.idTransaccion}" title="#{bundle.CreateTransaccionTitle_idTransaccion}" required="true" requiredMessage="#{bundle.CreateTransaccionRequiredMessage_idTransaccion}"/>
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idTipoTransaccion}" for="idTipoTransaccion" />
+                    <h:selectOneMenu id="idTipoTransaccion" value="#{transaccionController.selected.idTipoTransaccion}" title="#{bundle.CreateTransaccionTitle_idTipoTransaccion}" required="true" requiredMessage="#{bundle.CreateTransaccionRequiredMessage_idTipoTransaccion}">
+                        <f:selectItems value="#{tipoTransaccionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idRequisicion}" for="idRequisicion" />
+                    <h:selectOneMenu id="idRequisicion" value="#{transaccionController.selected.idRequisicion}" title="#{bundle.CreateTransaccionTitle_idRequisicion}" >
+                        <f:selectItems value="#{requisicionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idOrden}" for="idOrden" />
+                    <h:selectOneMenu id="idOrden" value="#{transaccionController.selected.idOrden}" title="#{bundle.CreateTransaccionTitle_idOrden}" >
+                        <f:selectItems value="#{ordenDeCompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idInventario}" for="idInventario" />
+                    <h:selectOneMenu id="idInventario" value="#{transaccionController.selected.idInventario}" title="#{bundle.CreateTransaccionTitle_idInventario}" required="true" requiredMessage="#{bundle.CreateTransaccionRequiredMessage_idInventario}">
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTransaccionLabel_idDevolucion}" for="idDevolucion" />
+                    <h:selectOneMenu id="idDevolucion" value="#{transaccionController.selected.idDevolucion}" title="#{bundle.CreateTransaccionTitle_idDevolucion}" >
+                        <f:selectItems value="#{devolucionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{transaccionController.create}" value="#{bundle.CreateTransaccionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{transaccionController.prepareList}" value="#{bundle.CreateTransaccionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateTransaccionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_idProveedor}" for="idProveedor" />
+                    <h:inputText id="idProveedor" value="#{proveedorController.selected.idProveedor}" title="#{bundle.CreateProveedorTitle_idProveedor}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_idProveedor}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.CreateProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_correo}" for="correo" />
+                    <h:inputText id="correo" value="#{proveedorController.selected.correo}" title="#{bundle.CreateProveedorTitle_correo}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_nit}" for="nit" />
+                    <h:inputText id="nit" value="#{proveedorController.selected.nit}" title="#{bundle.CreateProveedorTitle_nit}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_giro}" for="giro" />
+                    <h:inputText id="giro" value="#{proveedorController.selected.giro}" title="#{bundle.CreateProveedorTitle_giro}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_nrc}" for="nrc" />
+                    <h:inputText id="nrc" value="#{proveedorController.selected.nrc}" title="#{bundle.CreateProveedorTitle_nrc}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_idTipoProveedor}" for="idTipoProveedor" />
+                    <h:selectOneMenu id="idTipoProveedor" value="#{proveedorController.selected.idTipoProveedor}" title="#{bundle.CreateProveedorTitle_idTipoProveedor}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_idTipoProveedor}">
+                        <f:selectItems value="#{tipoProveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_idPersona}" for="idPersona" />
+                    <h:selectOneMenu id="idPersona" value="#{proveedorController.selected.idPersona}" title="#{bundle.CreateProveedorTitle_idPersona}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_idPersona}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedorController.create}" value="#{bundle.CreateProveedorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.CreateProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateProveedorIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

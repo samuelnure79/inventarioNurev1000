@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetalleProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_idDetalleProducto}" for="idDetalleProducto" />
+                    <h:inputText id="idDetalleProducto" value="#{detalleProductoController.selected.idDetalleProducto}" title="#{bundle.EditDetalleProductoTitle_idDetalleProducto}" required="true" requiredMessage="#{bundle.EditDetalleProductoRequiredMessage_idDetalleProducto}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{detalleProductoController.selected.nombre}" title="#{bundle.EditDetalleProductoTitle_nombre}" required="true" requiredMessage="#{bundle.EditDetalleProductoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{detalleProductoController.selected.cantidad}" title="#{bundle.EditDetalleProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.EditDetalleProductoRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_idProducto}" for="idProducto" />
+                    <h:selectOneMenu id="idProducto" value="#{detalleProductoController.selected.idProducto}" title="#{bundle.EditDetalleProductoTitle_idProducto}" required="true" requiredMessage="#{bundle.EditDetalleProductoRequiredMessage_idProducto}">
+                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_idDetalleRequisicion}" for="idDetalleRequisicion" />
+                    <h:selectOneMenu id="idDetalleRequisicion" value="#{detalleProductoController.selected.idDetalleRequisicion}" title="#{bundle.EditDetalleProductoTitle_idDetalleRequisicion}" >
+                        <f:selectItems value="#{detalleRequisicionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_idDetalleDevolucion}" for="idDetalleDevolucion" />
+                    <h:selectOneMenu id="idDetalleDevolucion" value="#{detalleProductoController.selected.idDetalleDevolucion}" title="#{bundle.EditDetalleProductoTitle_idDetalleDevolucion}" >
+                        <f:selectItems value="#{detalleDevolucionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleProductoLabel_idDetalleDeOrdenCompra}" for="idDetalleDeOrdenCompra" />
+                    <h:selectOneMenu id="idDetalleDeOrdenCompra" value="#{detalleProductoController.selected.idDetalleDeOrdenCompra}" title="#{bundle.EditDetalleProductoTitle_idDetalleDeOrdenCompra}" >
+                        <f:selectItems value="#{detalleDeOrdenCompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detalleProductoController.update}" value="#{bundle.EditDetalleProductoSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditDetalleProductoViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{detalleProductoController.prepareList}" value="#{bundle.EditDetalleProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditDetalleProductoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

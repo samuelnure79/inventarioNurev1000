@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDevolucionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idDevolucion}" for="idDevolucion" />
+                    <h:inputText id="idDevolucion" value="#{devolucionController.selected.idDevolucion}" title="#{bundle.CreateDevolucionTitle_idDevolucion}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_idDevolucion}"/>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{devolucionController.selected.cantidad}" title="#{bundle.CreateDevolucionTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idTipoDevolucion}" for="idTipoDevolucion" />
+                    <h:selectOneMenu id="idTipoDevolucion" value="#{devolucionController.selected.idTipoDevolucion}" title="#{bundle.CreateDevolucionTitle_idTipoDevolucion}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_idTipoDevolucion}">
+                        <f:selectItems value="#{tipoDevolucionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idRequisicion}" for="idRequisicion" />
+                    <h:selectOneMenu id="idRequisicion" value="#{devolucionController.selected.idRequisicion}" title="#{bundle.CreateDevolucionTitle_idRequisicion}" >
+                        <f:selectItems value="#{requisicionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idProveedor}" for="idProveedor" />
+                    <h:selectOneMenu id="idProveedor" value="#{devolucionController.selected.idProveedor}" title="#{bundle.CreateDevolucionTitle_idProveedor}" >
+                        <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idOrden}" for="idOrden" />
+                    <h:selectOneMenu id="idOrden" value="#{devolucionController.selected.idOrden}" title="#{bundle.CreateDevolucionTitle_idOrden}" >
+                        <f:selectItems value="#{ordenDeCompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDevolucionLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{devolucionController.selected.idCliente}" title="#{bundle.CreateDevolucionTitle_idCliente}" >
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{devolucionController.create}" value="#{bundle.CreateDevolucionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{devolucionController.prepareList}" value="#{bundle.CreateDevolucionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateDevolucionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

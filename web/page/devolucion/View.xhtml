@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDevolucionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idDevolucion}"/>
+                    <h:outputText value="#{devolucionController.selected.idDevolucion}" title="#{bundle.ViewDevolucionTitle_idDevolucion}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_cantidad}"/>
+                    <h:outputText value="#{devolucionController.selected.cantidad}" title="#{bundle.ViewDevolucionTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idTipoDevolucion}"/>
+                    <h:outputText value="#{devolucionController.selected.idTipoDevolucion}" title="#{bundle.ViewDevolucionTitle_idTipoDevolucion}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idRequisicion}"/>
+                    <h:outputText value="#{devolucionController.selected.idRequisicion}" title="#{bundle.ViewDevolucionTitle_idRequisicion}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idProveedor}"/>
+                    <h:outputText value="#{devolucionController.selected.idProveedor}" title="#{bundle.ViewDevolucionTitle_idProveedor}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idOrden}"/>
+                    <h:outputText value="#{devolucionController.selected.idOrden}" title="#{bundle.ViewDevolucionTitle_idOrden}"/>
+                    <h:outputText value="#{bundle.ViewDevolucionLabel_idCliente}"/>
+                    <h:outputText value="#{devolucionController.selected.idCliente}" title="#{bundle.ViewDevolucionTitle_idCliente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{devolucionController.destroyAndView}" value="#{bundle.ViewDevolucionDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDevolucionEditLink}"/>
+                <br />
+                <h:commandLink action="#{devolucionController.prepareCreate}" value="#{bundle.ViewDevolucionCreateLink}" />
+                <br />
+                <h:commandLink action="#{devolucionController.prepareList}" value="#{bundle.ViewDevolucionShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDevolucionIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

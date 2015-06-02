@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLoteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLoteLabel_idLote}"/>
+                    <h:outputText value="#{loteController.selected.idLote}" title="#{bundle.ViewLoteTitle_idLote}"/>
+                    <h:outputText value="#{bundle.ViewLoteLabel_cantidad}"/>
+                    <h:outputText value="#{loteController.selected.cantidad}" title="#{bundle.ViewLoteTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewLoteLabel_descripcion}"/>
+                    <h:outputText value="#{loteController.selected.descripcion}" title="#{bundle.ViewLoteTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewLoteLabel_idProducto}"/>
+                    <h:outputText value="#{loteController.selected.idProducto}" title="#{bundle.ViewLoteTitle_idProducto}"/>
+                    <h:outputText value="#{bundle.ViewLoteLabel_idBodega}"/>
+                    <h:outputText value="#{loteController.selected.idBodega}" title="#{bundle.ViewLoteTitle_idBodega}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{loteController.destroyAndView}" value="#{bundle.ViewLoteDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewLoteEditLink}"/>
+                <br />
+                <h:commandLink action="#{loteController.prepareCreate}" value="#{bundle.ViewLoteCreateLink}" />
+                <br />
+                <h:commandLink action="#{loteController.prepareList}" value="#{bundle.ViewLoteShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewLoteIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

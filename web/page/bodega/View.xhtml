@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBodegaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBodegaLabel_idBodega}"/>
+                    <h:outputText value="#{bodegaController.selected.idBodega}" title="#{bundle.ViewBodegaTitle_idBodega}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_cantidadPasillos}"/>
+                    <h:outputText value="#{bodegaController.selected.cantidadPasillos}" title="#{bundle.ViewBodegaTitle_cantidadPasillos}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_estantesPorPasillo}"/>
+                    <h:outputText value="#{bodegaController.selected.estantesPorPasillo}" title="#{bundle.ViewBodegaTitle_estantesPorPasillo}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_nombre2}"/>
+                    <h:outputText value="#{bodegaController.selected.nombre2}" title="#{bundle.ViewBodegaTitle_nombre2}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_catidadEstante}"/>
+                    <h:outputText value="#{bodegaController.selected.catidadEstante}" title="#{bundle.ViewBodegaTitle_catidadEstante}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_productoPorEstante}"/>
+                    <h:outputText value="#{bodegaController.selected.productoPorEstante}" title="#{bundle.ViewBodegaTitle_productoPorEstante}"/>
+                    <h:outputText value="#{bundle.ViewBodegaLabel_ubicacion}"/>
+                    <h:outputText value="#{bodegaController.selected.ubicacion}" title="#{bundle.ViewBodegaTitle_ubicacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bodegaController.destroyAndView}" value="#{bundle.ViewBodegaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewBodegaEditLink}"/>
+                <br />
+                <h:commandLink action="#{bodegaController.prepareCreate}" value="#{bundle.ViewBodegaCreateLink}" />
+                <br />
+                <h:commandLink action="#{bodegaController.prepareList}" value="#{bundle.ViewBodegaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewBodegaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

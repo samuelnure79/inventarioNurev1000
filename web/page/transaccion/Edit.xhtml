@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTransaccionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idTransaccion}" for="idTransaccion" />
+                    <h:inputText id="idTransaccion" value="#{transaccionController.selected.idTransaccion}" title="#{bundle.EditTransaccionTitle_idTransaccion}" required="true" requiredMessage="#{bundle.EditTransaccionRequiredMessage_idTransaccion}"/>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idTipoTransaccion}" for="idTipoTransaccion" />
+                    <h:selectOneMenu id="idTipoTransaccion" value="#{transaccionController.selected.idTipoTransaccion}" title="#{bundle.EditTransaccionTitle_idTipoTransaccion}" required="true" requiredMessage="#{bundle.EditTransaccionRequiredMessage_idTipoTransaccion}">
+                        <f:selectItems value="#{tipoTransaccionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idRequisicion}" for="idRequisicion" />
+                    <h:selectOneMenu id="idRequisicion" value="#{transaccionController.selected.idRequisicion}" title="#{bundle.EditTransaccionTitle_idRequisicion}" >
+                        <f:selectItems value="#{requisicionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idOrden}" for="idOrden" />
+                    <h:selectOneMenu id="idOrden" value="#{transaccionController.selected.idOrden}" title="#{bundle.EditTransaccionTitle_idOrden}" >
+                        <f:selectItems value="#{ordenDeCompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idInventario}" for="idInventario" />
+                    <h:selectOneMenu id="idInventario" value="#{transaccionController.selected.idInventario}" title="#{bundle.EditTransaccionTitle_idInventario}" required="true" requiredMessage="#{bundle.EditTransaccionRequiredMessage_idInventario}">
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_idDevolucion}" for="idDevolucion" />
+                    <h:selectOneMenu id="idDevolucion" value="#{transaccionController.selected.idDevolucion}" title="#{bundle.EditTransaccionTitle_idDevolucion}" >
+                        <f:selectItems value="#{devolucionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{transaccionController.update}" value="#{bundle.EditTransaccionSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditTransaccionViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{transaccionController.prepareList}" value="#{bundle.EditTransaccionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditTransaccionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
